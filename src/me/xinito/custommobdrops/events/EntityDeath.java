@@ -1,6 +1,8 @@
 package me.xinito.custommobdrops.events;
 
 import me.xinito.custommobdrops.Main;
+
+import org.bukkit.Material;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Monster;
@@ -31,5 +33,13 @@ public class EntityDeath
         e.getDrops().add(new ItemStack(this.plugin.citem));
       }
     }
+  }
+  
+  @EventHandler
+  public void xpBottles(EntityDeathEvent e) {
+	  if (plugin.getConfig().getBoolean("Item.xpbottles") == true) {
+		  e.setDroppedExp(0);
+		  e.getDrops().add(new ItemStack(Material.EXP_BOTTLE, 1));
+	  }
   }
 }

@@ -43,6 +43,10 @@ public class Main extends JavaPlugin implements Listener
     if (!getConfig().contains("Item.enchantmentLevel")) {
     	getConfig().set("Item.enchantmentLevel", Integer.valueOf(1));
     }
+    
+    if (!getConfig().contains("Item.xpbottles")) {
+    	getConfig().set("Item.xpbottles", Boolean.FALSE);
+    }
     getConfig().options().copyDefaults(true);
     
     saveConfig();
