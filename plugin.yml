@@ -1,0 +1,8 @@
+name: CustomMobDrops
+version: 0.3
+main: me.xinito.custommobdrops.Main
+author: Xinito
+commands:
+  cmditem:
+    description: Gives the player the Custom Item.
+    permission: cmditem.give
