@@ -1,6 +1,8 @@
 package me.xinito.custommobdrops.commands;
 
 import me.xinito.custommobdrops.Main;
+
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -38,6 +40,12 @@ public class ItemGive
       Player p = (Player)sender;
       p.getInventory().addItem(new ItemStack[] { new ItemStack(this.plugin.citem) });
       p.sendMessage("§aSuccesfully added the custom item in your inventory!");
+    } else if (a.length == 2)
+    {
+    	ItemStack item = plugin.api.createItem(Material.getMaterial(this.plugin.getConfig().getString("Item.materialName")), Integer.valueOf(a[1]), (short)0, this.plugin.getConfig().getString("Item.displayName").replaceAll("&", "§"), this.plugin.getConfig().getString("Item.lore").replaceAll("&", "§"));
+        Player p = (Player)sender;
+        p.getInventory().addItem(item);
+        p.sendMessage("§aSuccesfully added the custom items in your inventory!");
     }
     return false;
   }
