@@ -36,6 +36,9 @@ public class Main extends JavaPlugin implements Listener
     if (!getConfig().contains("Item.amount")) {
       getConfig().set("Item.amount", Integer.valueOf(1));
     }
+    if (!getConfig().contains("Item.dropchance")) {
+    	getConfig().set("Item.dropchance", Double.valueOf(100.0));
+    }
     
     if (!getConfig().contains("Item.enchantment")) {
     	getConfig().set("Item.enchantment", "NONE");

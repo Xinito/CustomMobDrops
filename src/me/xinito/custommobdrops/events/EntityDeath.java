@@ -2,6 +2,8 @@ package me.xinito.custommobdrops.events;
 
 import me.xinito.custommobdrops.Main;
 
+import java.util.Random;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
@@ -30,7 +32,12 @@ public class EntityDeath
       if ((e.getEntity() instanceof Animals)) {
         e.getDrops().add(new ItemStack(this.plugin.citem));
       } else if ((e.getEntity() instanceof Monster)) {
-        e.getDrops().add(new ItemStack(this.plugin.citem));
+    	  double chance = plugin.getConfig().getDouble("Item.dropchance",0)/100;
+    	  Random random = new Random();
+    	  if(random.nextDouble() <= chance) {
+    		e.getDrops().add(new ItemStack(this.plugin.citem));
+    	}
+
       }
     }
   }
