@@ -1,5 +1,5 @@
 name: CustomMobDrops
-version: 0.6
+version: 0.6.5
 main: me.xinito.custommobdrops.Main
 author: Xinito
 commands:

@@ -28,12 +28,18 @@ public class EntityDeath
   public void onKill(EntityDeathEvent e)
   {
     Entity killer = e.getEntity().getKiller();
+	double chance = plugin.getConfig().getDouble("Item.dropchance",0)/100;
+	Random random = new Random();
+	
     if ((killer instanceof Player)) {
       if ((e.getEntity() instanceof Animals)) {
-        e.getDrops().add(new ItemStack(this.plugin.citem));
+    	  
+    	  if(random.nextDouble() <= chance) {
+      		e.getDrops().add(new ItemStack(this.plugin.citem));
+      	}
+        
       } else if ((e.getEntity() instanceof Monster)) {
-    	  double chance = plugin.getConfig().getDouble("Item.dropchance",0)/100;
-    	  Random random = new Random();
+    	  
     	  if(random.nextDouble() <= chance) {
     		e.getDrops().add(new ItemStack(this.plugin.citem));
     	}
