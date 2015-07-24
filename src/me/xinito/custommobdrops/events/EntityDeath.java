@@ -14,45 +14,46 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class EntityDeath
-  implements Listener
-{
-  private Main plugin;
-  
-  public EntityDeath(Main plugin)
-  {
-    this.plugin = plugin;
-  }
-  
-  @EventHandler
-  public void onKill(EntityDeathEvent e)
-  {
-    Entity killer = e.getEntity().getKiller();
-	double chance = plugin.getConfig().getDouble("Item.dropchance",0)/100;
-	Random random = new Random();
-	
-    if ((killer instanceof Player)) {
-      if ((e.getEntity() instanceof Animals)) {
-    	  
-    	  if(random.nextDouble() <= chance) {
-      		e.getDrops().add(new ItemStack(this.plugin.citem));
-      	}
-        
-      } else if ((e.getEntity() instanceof Monster)) {
-    	  
-    	  if(random.nextDouble() <= chance) {
-    		e.getDrops().add(new ItemStack(this.plugin.citem));
-    	}
+public class EntityDeath implements Listener {
+	private Main plugin;
 
-      }
-    }
-  }
-  
-  @EventHandler
-  public void xpBottles(EntityDeathEvent e) {
-	  if (plugin.getConfig().getBoolean("Item.xpbottles") == true) {
-		  e.setDroppedExp(0);
-		  e.getDrops().add(new ItemStack(Material.EXP_BOTTLE, 1));
-	  }
-  }
+	public EntityDeath(Main plugin) {
+		this.plugin = plugin;
+	}
+
+	@EventHandler
+	public void onKill(EntityDeathEvent e) {
+		Entity killer = e.getEntity().getKiller();
+		double chance = plugin.getConfig().getDouble("Item.dropchance", 0) / 100;
+		Random random = new Random();
+
+		if ((killer instanceof Player)) {
+			if (plugin.getConfig().getBoolean("Item.animals") == true) {
+				if ((e.getEntity() instanceof Animals)) {
+
+					if (random.nextDouble() <= chance) {
+						e.getDrops().add(new ItemStack(this.plugin.citem));
+					}
+				}
+
+			} if (plugin.getConfig().getBoolean("Item.monsters") == true) {
+
+				if ((e.getEntity() instanceof Monster)) {
+
+					if (random.nextDouble() <= chance) {
+						e.getDrops().add(new ItemStack(this.plugin.citem));
+					}
+
+				}
+			}
+		}
+	}
+
+	@EventHandler
+	public void xpBottles(EntityDeathEvent e) {
+		if (plugin.getConfig().getBoolean("Item.xpbottles") == true) {
+			e.setDroppedExp(0);
+			e.getDrops().add(new ItemStack(Material.EXP_BOTTLE, 1));
+		}
+	}
 }
